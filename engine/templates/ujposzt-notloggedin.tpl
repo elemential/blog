@@ -1,0 +1,1 @@
+<a href="index.php">Új bejegyzés létrehozásához be kell jelentkezned!</a>
