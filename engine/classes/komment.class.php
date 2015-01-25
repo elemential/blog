@@ -11,9 +11,8 @@ class Komment {
 	private $szerzo_teljes_nev ;
 	private $hozzaszolas_ok=false;
 	
-	public function __construct($id, $ab){
-		$this -> ab = $ab ;
-		$komment_lekerdezes = sprintf("
+	public function __construct($id){
+		$komment_eredmeny = query("
 			SELECT
 				k.id               AS k_id,
 				k.datum            AS k_datum,
@@ -24,9 +23,9 @@ class Komment {
 			FROM hozzaszolasok AS k
 			JOIN felhasznalok AS f
 				ON k.szerzo_id = f.id
-			WHERE k.id = %d",
+			WHERE k.id = #1
+			ORDER BY datum DESC",
 			$id);
-		$komment_eredmeny = $this -> ab -> query( $komment_lekerdezes ) ;
 		if ( $komment_eredmeny -> num_rows == 0 ){
 			$this -> nemTalalhato();
 		} else {
