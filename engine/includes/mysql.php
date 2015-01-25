@@ -1,7 +1,7 @@
 <?php
 //echo "NEW FILE";
 include_once 'motor.php';
-$con = new mysqli('localhost','root','E==m*c^13','bejelentkezes');
+$con = new mysqli(__MYSQL_HOST,__MYSQL_USER,__MYSQL_PW,__MYSQL_DATABASE);
 $con -> set_charset('utf8');
 $ab=&$con;
 
