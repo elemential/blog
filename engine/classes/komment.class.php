@@ -40,6 +40,30 @@ class Komment {
 	}
 	
 	public function megjelenit(){
+        
+        
+        $sablon = file_get_contents('engine/templates/comment_form_szerk.tpl');
+        $mit = array(
+                     '%cim%',
+                     '%comment_id%'
+                     '%tartalom%',
+                     );
+        $mire = array(
+                      $this -> cim,
+                      $this -> id,
+                      $this -> tartalom,
+                      );
+        $sablon = str_replace( $mit, $mire, $sablon );
+        echo $sablon ;
+        
+        if ( $this -> hozzaszolas_ok == 1 && isset($_SESSION['ok']) && $_SESSION['ok'] === 'true' ){
+            $sablon = file_get_contents('engine/templates/comment_form.tpl');
+            $mit = '%poszt_id%' ;
+            $mire = $this -> id ;
+            $sablon = str_replace( $mit, $mire, $sablon );
+            echo $sablon ;
+        
+        
 		$sablon = file_get_contents('engine/templates/komment.tpl');
 		$mit = array(
 			'%szerzo%',
@@ -55,6 +79,9 @@ class Komment {
 			);
 		$sablon = str_replace( $mit, $mire, $sablon );
 		return $sablon ;
+        
+        
+
 	}
 	
 	public function nemTalalhato(){

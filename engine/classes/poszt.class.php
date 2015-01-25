@@ -91,36 +91,29 @@ class Poszt {
 			}
 		}
 		
-		$sablon = file_get_contents('engine/templates/poszt.tpl');
-		$mit = array(
-			'%id%',
-			'%cim%',
-			'%szerzo%',
-			'%datum%',
-			'%tartalom%',
-			'%cimkek%',
-			'%hozzaszolasok%'
-			);
-		$mire = array(
-			$this -> id,
-			$this -> cim,
-			( $this -> szerzo_teljes_nev == '')
-				? $this->szerzo_nev
-				: $this->szerzo_teljes_nev,
-			$this -> datum,
-			$this -> tartalom,
-			$cimkek_html_kimenet,
-			$kommentek_html_kimenet
-			);
-		$sablon = str_replace( $mit, $mire, $sablon );
-		echo $sablon ;
-
-		if ( $this -> hozzaszolas_ok == 1 && isset($_SESSION['ok']) && $_SESSION['ok'] === 'true' ){
-			$sablon = file_get_contents('engine/templates/comment_form.tpl');
-			$mit = '%poszt_id%' ;
-			$mire = $this -> id ;
-			$sablon = str_replace( $mit, $mire, $sablon );
-			echo $sablon ;
+        $sablon = file_get_contents('engine/templates/poszt.tpl');
+        $mit = array(
+                     '%id%',
+                     '%cim%',
+                     '%szerzo%',
+                     '%datum%',
+                     '%tartalom%',
+                     '%cimkek%',
+                     '%hozzaszolasok%'
+                     );
+        $mire = array(
+                      $this -> id,
+                      $this -> cim,
+                      ( $this -> szerzo_teljes_nev == '')
+                      ? $this->szerzo_nev
+                      : $this->szerzo_teljes_nev,
+                      $this -> datum,
+                      $this -> tartalom,
+                      $cimkek_html_kimenet,
+                      $kommentek_html_kimenet
+                      );
+        $sablon = str_replace( $mit, $mire, $sablon );
+        echo $sablon ;
 		}
 		
 	}
