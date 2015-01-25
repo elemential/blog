@@ -6,5 +6,12 @@
 	</header>
 	%tartalom%
 	<div class="cimkek">%cimkek%</div>
+    %szerkesztes%
 	<div class="hozzaszolasok">%hozzaszolasok%</div>
 </article>
+<script>
+function szerkeszt(){
+    alert('hm...');
+}
+
+</script>

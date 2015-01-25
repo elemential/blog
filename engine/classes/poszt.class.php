@@ -101,6 +101,14 @@ class Poszt {
 			'%cimkek%',
 			'%hozzaszolasok%'
 			);
+        
+        if($_SESSION['f_nev']==$this->szerzo_nev){
+            $szerkesztes='<i onclick="szerkeszt()">Szerkesztés</i>';
+        }else{
+        $szerkesztes="";
+        }
+        
+        
 		$mire = array(
 			$this -> id,
 			$this -> cim,
@@ -110,6 +118,7 @@ class Poszt {
 			$this -> datum,
 			$this -> tartalom,
 			$cimkek_html_kimenet,
+            $szerkesztes,
 			$kommentek_html_kimenet
 			);
 		$sablon = str_replace( $mit, $mire, $sablon );
@@ -121,6 +130,7 @@ class Poszt {
 			$mire = $this -> id ;
 			$sablon = str_replace( $mit, $mire, $sablon );
 			echo $sablon ;
+            
 		}
 		
 	}
