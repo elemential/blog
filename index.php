@@ -7,10 +7,18 @@
 	<meta charset="utf-8">
 	<title>VPG Blog</title>
 	<link rel="stylesheet" type="text/css" href="./assets/style/style.css" />
+    <script>
+           fome = { primaryColor : '#666',
+            theme : 0 };
+    </script>
 </head><body>
+    
+    <fome-menu></fome-menu>
+    
+   
 	<div id="fejlecKontener">
 		<header>
-			<h1>VPG szakkör blog</h1>
+			<h1>BLOG</h1>
 		</header>
 	</div>
 	<div id="tartalomKontener">
@@ -27,4 +35,6 @@
 			Copyright
 		</footer>
 	</div>
+   <link rel="import" href="http://elemential.net/polyfome/include_minimalist.html">
+     <link rel="import" href="http://elemential.net/polyfome/elementile.html">
 </body></html>
