@@ -1,18 +1,24 @@
 <?
-	require_once(__DIR__.'/../require.php');
-	if ( isset( $_POST['fnev'], $_POST['jelszo'] ) ){
+  //session_start();  
+  
+  require_once("lapisclient.php");
+  
+  $lapis = new Lapis("lapisSessionId");
+  
+	if ( isset( $_GET['sessionid'] ) ){
+	  
+	  $lapis->login();
+	  
 		$lekerdezes = sprintf("
-			SELECT id, felhasznaloi_nev, teljes_nev
+			SELECT felhasznaloi_nev, teljes_nev
 			FROM felhasznalok
-			WHERE felhasznaloi_nev = '%s'
-			AND jelszo = '%s'",
-			$ab -> real_escape_string( $_POST['fnev'] ),
-			md5( $_POST['jelszo'] ) ) ;
+			WHERE id=%d",
+			$lapis->getUserId() ) ;
 		$eredmeny = $ab -> query( $lekerdezes );
 		if ( $eredmeny -> num_rows == 1 ){ // Siker
 			$sor = $eredmeny -> fetch_assoc() ;
 			$_SESSION['ok'] = 'true' ;
-			$_SESSION['f_id'] = $sor['id'] ;
+			$_SESSION['f_id'] = $lapis->getUserId() ;
 			$_SESSION['f_nev'] = $sor['felhasznaloi_nev'] ;
 			$_SESSION['f_teljes_nev'] = $sor['teljes_nev'] ;
 		} else { // Hiba
