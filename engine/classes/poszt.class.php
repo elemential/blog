@@ -114,7 +114,7 @@ class Poszt {
                       );
         $sablon = str_replace( $mit, $mire, $sablon );
         echo $sablon ;
-		}
+		//}
 		
 	}
 	

@@ -9,6 +9,7 @@ class Komment {
 	private $szerzo_id ;
 	private $szerzo_nev ;
 	private $szerzo_teljes_nev ;
+	private $hozzaszolas_ok=false;
 	
 	public function __construct($id, $ab){
 		$this -> ab = $ab ;
@@ -44,12 +45,10 @@ class Komment {
         
         $sablon = file_get_contents('engine/templates/comment_form_szerk.tpl');
         $mit = array(
-                     '%cim%',
-                     '%comment_id%'
+                     '%comment_id%',
                      '%tartalom%',
                      );
         $mire = array(
-                      $this -> cim,
                       $this -> id,
                       $this -> tartalom,
                       );
