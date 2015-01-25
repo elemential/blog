@@ -10,9 +10,8 @@ class Komment {
 	private $szerzo_nev ;
 	private $szerzo_teljes_nev ;
 	
-	public function __construct($id, $ab){
-		$this -> ab = $ab ;
-		$komment_lekerdezes = sprintf("
+	public function __construct($id){
+		$res = query("
 			SELECT
 				k.id               AS k_id,
 				k.datum            AS k_datum,
@@ -23,13 +22,12 @@ class Komment {
 			FROM hozzaszolasok AS k
 			JOIN felhasznalok AS f
 				ON k.szerzo_id = f.id
-			WHERE k.id = %d",
+			WHERE k.id = #1",
 			$id);
-		$komment_eredmeny = $this -> ab -> query( $komment_lekerdezes ) ;
-		if ( $komment_eredmeny -> num_rows == 0 ){
+		if ( $res -> num_rows == 0 ){
 			$this -> nemTalalhato();
 		} else {
-			$aktualis_komment = $komment_eredmeny -> fetch_assoc();
+			$aktualis_komment = $res -> fetch_assoc();
 			$this -> id = $aktualis_komment['k_id'];
 			$this -> datum = $aktualis_komment['k_datum'];
 			$this -> tartalom = $aktualis_komment['k_tartalom'];
