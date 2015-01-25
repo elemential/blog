@@ -36,7 +36,7 @@ body article:first-child {
     -webkit-transition: height .4s;
     -moz-transition: height .4s;
     -ms-transition: height .4s;
-}
+} 
 #fejlecKontener > header {
     max-width: 800px;
     margin: 0 auto;
