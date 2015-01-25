@@ -74,8 +74,9 @@
     //Szerkesztett komment beszúrása az adatbázisba
     if (isset($_SESSION['ok']) && $_SESSION['ok'] === 'true' ){
         if (isset($_POST['tartalom'], $_GET['komment_id'])){
-			$komment=new komment($_GET['komment_id']);
+			$komment=new komment($_GET['komment_id'], $_REQUEST['tartalom'], $_REQUEST['poszt_id']);
 			$komment->update($_REQUEST['tartalom']);
+			echo $komment->megjelenit();
     }
 }
 	

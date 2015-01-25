@@ -9,7 +9,7 @@
 	<div class="cimkek">
 		%cimkek%
 		<article class="comment">
-			<form action="index.php?muvelet=szerkeszt&komment_id=0" method="post">
+			<form action="index.php?muvelet=szerkeszt&komment_id=0&poszt_id=%id%" method="post">
 				<textarea placeholder="Mit szólsz hozzá?" name="tartalom"></textarea>
 				<input type=submit value=Hozzászólok!>
 			</form>

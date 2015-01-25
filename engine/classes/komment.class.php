@@ -11,13 +11,15 @@ class Komment {
 	private $szerzo_teljes_nev ;
 	private $hozzaszolas_ok=false;
 	
-	public function __construct($id, $tartalom=false){
+	public function __construct($id, $tartalom=false, $poszt_id=false){
 		if ($id==0){
 			query(
-				"INSERT INTO hozzaszolasok (szerzo_id, tartalom) VALUES (#1, @2)",
+				"INSERT INTO hozzaszolasok (szerzo_id, tartalom, poszt_id) VALUES (#1, @2, #3)",
 				$_SESSION['f_id'],
-				$tartalom
+				$tartalom,
+				$poszt_id
 			);
+			$id=sqlid();
 		}
 		$komment_eredmeny = query("
 			SELECT
@@ -73,7 +75,7 @@ class Komment {
 			UPDATE hozzaszolasok (tartalom)
 			VALUES (@1)
 			WHERE id=#2",
-			$ab -> real_escape_string( strip_tags( $tartalom, '<a><b><i>' ) ),
+			strip_tags( $tartalom, '<a><b><i>' ),
 			$this -> id
 		);
 	}
