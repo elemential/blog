@@ -8,6 +8,7 @@ html,
 body {
     background: white !important;
     font-family: sans-serif;
+    margin-top:60px;
 }
 article {
     background: white;
@@ -146,6 +147,11 @@ article.comment {
 }
 article.comment {
     color: #222;
+}
+.kiemel {
+    border:1px solid #999 !important;  
+    width:150px;
+   
 }
 input[type="text"],
 input[type="password"] {
@@ -361,4 +367,13 @@ img[src="profile_icon.png"] {
     background: #f1f1f1;
     position: fixed;
     top: -5px;
+}
+.cimke a{ 
+    -webkit-filter:
+padding: 5px;
+background: #22b64d;
+margin: 10px;
+display: inline-block;
+color: white;
+text-decoration: none;   
 }
