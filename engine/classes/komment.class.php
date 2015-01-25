@@ -11,7 +11,14 @@ class Komment {
 	private $szerzo_teljes_nev ;
 	private $hozzaszolas_ok=false;
 	
-	public function __construct($id){
+	public function __construct($id, $tartalom=false){
+		if ($id==0){
+			query(
+				"INSERT INTO hozzaszolasok (szerzo_id, tartalom) VALUES (#1, @2)",
+				$_SESSION['f_id'],
+				$tartalom
+			);
+		}
 		$komment_eredmeny = query("
 			SELECT
 				k.id               AS k_id,
@@ -60,7 +67,8 @@ class Komment {
 		echo "HIBA: Hiányzó hozzászólás.<br>" ;
 	}
 	
-	public function update($tartalom){
+	public function update($tartalom=false){
+		$tartalom=$tartalom?$tartalom:'tartalom';
 		query("
 			UPDATE hozzaszolasok (tartalom)
 			VALUES (@1)

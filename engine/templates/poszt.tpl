@@ -5,6 +5,14 @@
 		<span class="datum">%datum%</span>
 	</header>
 	%tartalom%
-	<div class="cimkek">%cimkek%</div>
 	<div class="hozzaszolasok">%hozzaszolasok%</div>
+	<div class="cimkek">
+		%cimkek%
+		<article class="comment">
+			<form action="index.php?muvelet=szerkeszt&komment_id=0" method="post">
+				<textarea placeholder="Mit szólsz hozzá?" name="tartalom"></textarea>
+				<input type=submit value=Hozzászólok!>
+			</form>
+		</article>
+	</div>
 </article>
