@@ -9,43 +9,48 @@
 		if (isset($_POST['poszt_cime'], $_POST['poszt_tartalma'], $_POST['poszt_cimkek'])){
 			$poszt_cimkek = explode(';',$_POST['poszt_cimkek']);
 			print_r($poszt_cimkek);
-			query("
+			$beszuro_lekerdezes = sprintf("
 				INSERT INTO posztok (cim, tartalom, szerzo_id, hsz_lehet)
-				VALUES ('@1','@2',#3,?4)",
+				VALUES ('%s','%s',%d,%d)",
 				$ab -> real_escape_string( strip_tags( $_POST['poszt_cime'] ) ),
 				$ab -> real_escape_string( strip_tags( $_POST['poszt_tartalma'], '<a><b><i>' )),
 				$_SESSION['f_id'],
-				isset( $_POST['hsz_lehet'] )
+				( isset( $_POST['hsz_lehet'] ) ? 1 : 0 )
 			) ;
-			$poszt_id = sqlid();
+			$ab -> query($beszuro_lekerdezes) ;
+			$poszt_id = $ab -> insert_id ;
 			foreach ( $poszt_cimkek as $aktualis_cimke ){
 				$aktualis_cimke = trim( $aktualis_cimke );
-				$cimke_adatbazisban_eredmeny = query("
+				$cimke_adatbazisban_lekerdezes = sprintf("
 					SELECT id
 					FROM cimkek
-					WHERE nev = @1",
+					WHERE nev = '%s'",
 					$ab -> real_escape_string( $aktualis_cimke) );
+				$cimke_adatbazisban_eredmeny = $ab -> query( $cimke_adatbazisban_lekerdezes );
 				if ( $cimke_adatbazisban_sor = $cimke_adatbazisban_eredmeny -> fetch_assoc() ){
 					$aktualis_cimke_id = $cimke_adatbazisban_sor['id'] ;
-					query("
+					$cimke_poszthoz_lekerdezes = sprintf("
 						INSERT INTO posztCimkek
-						VALUES (#1, #2)",
+						VALUES (%d, %d)",
 						$poszt_id,
 						$aktualis_cimke_id );
+					$ab -> query($cimke_poszthoz_lekerdezes);
 				} else {
 					// Beszúrjuk az új címkét az adatbázisba
-					query("
+					$uj_cimke_lekerdezes = sprintf("
 						INSERT INTO cimkek (nev)
-						VALUES (@1)",
+						VALUES ('%s')",
 						$ab -> real_escape_string( strip_tags( $aktualis_cimke ) ) );
+					$ab -> query($uj_cimke_lekerdezes);
 					// Visszakérjük az új címke azonosítóját
-					$uj_cimke_id = sqlid() ;
+					$uj_cimke_id = $ab -> insert_id ;
 					// Összerendeljük az új címkét a poszttal
-					query("
+					$cimke_poszthoz_lekerdezes = sprintf("
 						INSERT INTO posztCimkek
-						VALUES (#1, #2)",
+						VALUES (%d, %d)",
 						$poszt_id,
 						$uj_cimke_id );
+					$ab -> query($cimke_poszthoz_lekerdezes);
 				}
 			}
 		}

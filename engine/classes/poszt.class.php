@@ -17,7 +17,7 @@ class Poszt {
 	public function __construct($id, $ab){
 		$this -> ab = $ab ;
 		$this -> cimkek = Array();
-		$res=query("
+		$poszt_lekerdezes = sprintf("
 			SELECT
 				p.id               AS p_id,
 				p.cim              AS p_cim,
@@ -30,12 +30,13 @@ class Poszt {
 			FROM posztok AS p
 			JOIN felhasznalok AS f
 				ON p.szerzo_id = f.id
-			WHERE p.id = #1",
+			WHERE p.id = %d",
 			$id);
-		if ( $res -> num_rows == 0 ){
+		$poszt_eredmeny = $this -> ab -> query( $poszt_lekerdezes ) ;
+		if ( $poszt_eredmeny -> num_rows == 0 ){
 			$this -> nemTalalhato();
 		} else {
-			$aktualis_poszt = $res -> fetch_assoc();
+			$aktualis_poszt = $poszt_eredmeny -> fetch_assoc();
 			$this -> id = $aktualis_poszt['p_id'];
 			$this -> cim = $aktualis_poszt['p_cim'];
 			$this -> datum = $aktualis_poszt['p_datum'];
@@ -46,27 +47,29 @@ class Poszt {
 			$this -> szerzo_teljes_nev = $aktualis_poszt['f_teljes_nev'];
 			$this -> hozzaszolasok = array();
 			
-			$res=query("
+			$kommentek_lekerdezes = sprintf("
 				SELECT id
 				FROM hozzaszolasok
-				WHERE poszt_id = #1
+				WHERE poszt_id = %d
 				ORDER BY datum DESC",
 				$this -> id );
-			while ( $komment = $res -> fetch_assoc()){
+			$kommentek_eredmeny = $ab -> query($kommentek_lekerdezes);
+			while ( $komment = $kommentek_eredmeny -> fetch_assoc()){
 				$this->hozzaszolasok[] = new Komment( $komment['id'], $this-> ab );
 
 			}
 
-			$res=query("
+			$cimkek_lekerdezes = sprintf("
 				SELECT c.id, c.nev
 				FROM cimkek AS c
 				JOIN posztCimkek AS pc
 					ON c.id = pc.cimke_id
 				JOIN posztok AS p
 					ON pc.poszt_id = p.id
-				WHERE p.id = #1",
+				WHERE p.id = %d",
 				$this -> id ) ;
-			while ( $cimke = $res -> fetch_assoc() ){
+			$cimkek_eredmeny = $ab -> query($cimkek_lekerdezes);
+			while ( $cimke = $cimkek_eredmeny -> fetch_assoc() ){
 				$uj_cimke = new Cimke($cimke['id'],$cimke['nev']);				
 				$this -> cimkek[] = $uj_cimke ;
 			}
