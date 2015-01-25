@@ -3,6 +3,8 @@
 	$ab = new mysqli('localhost','root','E==m*c^13','bejelentkezes');
 	$ab -> set_charset('utf8');
 	
+	require_once('mysql.php');
+	
 	require('login.php');
 	
 	require('engine/classes/poszt.class.php');

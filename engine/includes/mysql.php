@@ -1,114 +1,7 @@
 <?php
 //echo "NEW FILE";
-include_once 'include_all.php';
-$con=new mysqli('localhost','elementi',pw,'elementi_chicken');
-
-if(!true)set_error_handler('errorHandler');
-function errorHandler($errno, $errmsg, $filename, $linenum, $vars) // (C) PHP.net
-{
-	/*
-	$errortype = array (
-		E_ERROR              => 'Error',
-		E_WARNING            => 'Warning',
-		E_PARSE              => 'Parsing Error',
-		E_NOTICE             => 'Notice',
-		E_CORE_ERROR         => 'Core Error',
-		E_CORE_WARNING       => 'Core Warning',
-		E_COMPILE_ERROR      => 'Compile Error',
-		E_COMPILE_WARNING    => 'Compile Warning',
-		E_USER_ERROR         => 'User Error',
-		E_USER_WARNING       => 'User Warning',
-		E_USER_NOTICE        => 'User Notice',
-		E_STRICT             => 'Runtime Notice',
-		E_RECOVERABLE_ERROR  => 'Catchable Fatal Error'
-	);
-	*/
-	$errortype=[
-		E_ERROR			=>'E_ERROR',
-		E_WARNING		=>'E_WARNING',
-		E_PARSE			=>'E_PARSE',
-		E_NOTICE		=>'E_NOTICE',
-		E_CORE_ERROR		=>'E_CORE_ERROR',
-		E_CORE_WARNING		=>'E_CORE_WARNING',
-		E_COMPILE_ERROR		=>'E_COMPILE_ERROR',
-		E_COMPILE_WARNING	=>'E_COMPILE_WARNING',
-		E_USER_ERROR		=>'E_USER_ERROR',
-		E_USER_WARNING		=>'E_USER_WARNING',
-		E_USER_NOTICE		=>'E_USER_NOTICE',
-		E_STRICT		=>'E_STRICT',
-		E_RECOVERABLE_ERROR	=>'E_RECOVERABLE_ERROR'
-	];
-	// set of errors for which a var trace will be saved
-	$user_errors=array(
-		E_USER_ERROR,
-		E_USER_WARNING,
-		E_USER_NOTICE
-	);
-	
-	$debug['file']=$filename;
-	$debug['line']=$linenum;
-	$debug['vars']=$vars;
-	/*
-	$bactrace=debug_backtrace();
-	$bactrace=isset($backtrace)?$backtrace:false;
-	if(is_array($backtrace)) unset($bactrace[0]);
-	$debug['backtrace']=$backtrace;
-	*/
-	
-	// save to the error log, and e-mail me if there is a critical user error
-	log_error($errmsg, 'auto-reported', $errortype[$errno], $debug);
-	if ($errno == E_USER_ERROR) {
-		mail("phpdev@example.com", "Critical User Error", print_r([$errno, $errmsg, $filename, $linenum, $vars], true));
-	}
-}
-
-class unloaded{
-	public $type='';
-	public $types=[];
-	public $possibletypes=[
-		'array'=>'basic',
-		'id'=>'numeric',
-		'comment'=>'basic',
-		'base'=>'object',
-		'party'=>'object',
-		'group'=>'object',
-		'user'=>'object',
-		'place'=>'object'
-	];
-	
-	private function checktype($needle, &$haystack){
-		$len=strlen($needle);
-		if (substr($haystack, 0, $len)==$needle){
-			$haystack=substr($haystack, $len+1);
-			return true;
-		}else return false;
-	}
-	
-	private function getarr($type){
-		if (in_array($type, $this->possibletypes)){
-			return [$type=>getarr($possibletypes[$type])];
-		}else return 'boolean';
-	}
-	
-	public function create($type){
-		$this->type=$type;
-		while ($type){
-			foreach($this->possibletypes as $key=>$value){
-				if($this->checktype($key, $type)){
-					$this->types[]=getarr($type);
-				}
-			}
-		}
-		dbg("empty($type)==".print_r($this, true));
-	}
-	
-	public function canfill($value){
-		if(in_array($value, $this->types, true)){
-			//$this=$value;
-			return true;
-		}else return false;
-	}
-}
+include_once 'motor.php';
+$con=&$ab;
 
 $sqlid=null;
 //$nothig=GENERATE_ERROR;
@@ -226,7 +119,7 @@ function log_mysql($info, $sect='info'){
 }
 function fatal($msg, $error, $file='info'){
 	log_error($error, $file, 'fatal error');
-	die("Fatal error: $msg<br>\n(we hope, you're trying to cheat)");
+	die("Fatal error: <b>$msg</b><br>\n(we hope, you're trying to cheat)");
 }
 function log_error($error, $file='info', $section='error', $debug=null){
 	if ($debug===null){
@@ -252,6 +145,7 @@ function dbg($info, $file='info', $section='debug'){
 	log_info($info, $section, $file, $debug);
 }
 function log_info($info, $sect='info', $file='info', $debug=null){
+	/*
 	global $con;
 	if (is_array($info)){
 		$info=print_r($info, true);
@@ -267,6 +161,15 @@ function log_info($info, $sect='info', $file='info', $debug=null){
 	$con->query($ques);
 	if ($con->errno){
 		file_put_contents('fatal_error_log', date("r")." [log_error]Query failed: $ques");
+	}
+	*/
+	if (isset($_GET['dev'])){
+		echo "<div class=log>\n"
+			echo "<b>$file</b>[$sect] $info<br>\n"
+			echo "<pre>\n";
+				var_dump($debug);echo "\n";
+			echo "</pre>\n"
+		echo "</div>\n"
 	}
 }
 
