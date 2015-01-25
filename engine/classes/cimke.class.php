@@ -1,5 +1,5 @@
 <?
-
+require_once(__DIR__.'/../require.php');
 class Cimke {
 	
 	private $id ;

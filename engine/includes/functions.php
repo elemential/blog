@@ -1,10 +1,5 @@
 <?php
-include_once('local.php');
-include_once('mysql.php');
-require('engine/classes/poszt.class.php');
-require('engine/classes/komment.class.php');
-require('engine/classes/cimke.class.php');
-
+require_once(__DIR__.'/../require.php');
 function toarray($keys=[], $that=null, $details=false){
 	if ($that && !$details) $details=$that->details; 
 	$thats=function($key)use($that, $details){

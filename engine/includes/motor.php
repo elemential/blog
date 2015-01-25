@@ -1,7 +1,7 @@
 <?
 	session_start() ;
 	
-	require_once('functions.php');
+	require_once(__DIR__.'/../require.php');
 	require('login.php');
 	
 	// Új blogposzt beszúrása az adatbázisba

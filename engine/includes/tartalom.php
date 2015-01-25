@@ -1,4 +1,6 @@
 <?
+	require_once(__DIR__.'/../require.php');
+	
 	if ( isset( $_GET['muvelet']) ){
 		if ( $_GET['muvelet'] == 'uj_poszt' ){
 			require('ujposzt.php');

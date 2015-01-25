@@ -1,5 +1,6 @@
 <?
 	//Start of index.php
+	require_once('engine/require.php');
 	require_once('engine/includes/motor.php');
 ?>
 <!DOCTYPE HTML>
