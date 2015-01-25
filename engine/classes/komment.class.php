@@ -61,7 +61,7 @@ class Komment {
                       $this -> tartalom,
                       );
         $sablon = str_replace( $mit, $mire, $sablon );
-        echo $sablon;
+        return $sablon;
     }
 	public function nemTalalhato(){
 		echo "HIBA: Hiányzó hozzászólás.<br>" ;
