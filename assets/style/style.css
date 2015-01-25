@@ -27,7 +27,7 @@ html, body {
 #tartalomKontener {
 	width: 800px ;
 	margin: 0 auto ;
-}
+} 
 
 #tartalomKontener > aside {
 	width: 200px ;
