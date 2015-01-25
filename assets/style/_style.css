@@ -1,0 +1,49 @@
+* {
+	margin:  0 ;
+	padding: 0 ;
+}
+
+html, body {
+    -webkit-user-select:initial;
+}
+
+#fejlecKontener {
+    background: #48F;
+}
+
+#fejlecKontener > header {
+	width: 800px ;
+	margin: 0 auto ;
+	padding: 20px 0 ;
+}
+
+#tartalomKontener {
+	width: 800px ;
+	margin: 0 auto ;
+} 
+
+#tartalomKontener > aside {
+	width: 200px ;
+	border: 1px solid red ;
+	float: right ;
+}
+
+#lablecKontener {
+	background: #48F;
+	border-top: 1px solid #d2d2d2 ;
+	position: fixed ;
+	bottom: 0 ;
+	right: 0	;
+	left: 0 ;
+    display: none;  
+}
+
+#lablecKontener > footer {
+	width: 800px ;
+	margin: 0 auto ;
+	padding: 10px 0 ;
+}
+
+.clearer {
+	clear: both ;
+}
