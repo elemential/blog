@@ -386,5 +386,21 @@ transition: all .4s;
 }
 
 .hozzaszolasok {
- margin-left:    
+ margin-left:  20px;  
+    border-left: 3px solid #48F;
+padding-left: 20px;
+}
+
+.postIt {
+ border-left: 3px solid #48F;
+padding-left: 20px;
+margin-left: 20px;
+margin-top: -21px;
+padding-top: 25px;   
+}
+aside form {
+    
+ /*position: absolute !important;*/
+margin-left: 10px !important;
+    display:inline;
 }

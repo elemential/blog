@@ -86,10 +86,23 @@ class Poszt {
 		
 		$kommentek_html_kimenet = '' ;
 		if ( $this -> hozzaszolas_ok == 1 ){
+            
+            ?> <img src="assets/images/comment.png" class="commentimg">
+                <h2>Hozzászólások</h2> 
+            <?
+            
 			foreach ( $this -> hozzaszolasok AS $hsz ){
 				$kommentek_html_kimenet .= $hsz -> megjelenit() ;
 			}
 		}
+        else {
+         ?> 
+                <span class="off">
+                <img src="assets/images/commentoff.png" class="commentimg">
+                <h2>Hozzászólások letiltva</h2> 
+                </span>
+            <?   
+        }
 		
 		$sablon = file_get_contents('engine/templates/poszt.tpl');
 		$mit = array(
