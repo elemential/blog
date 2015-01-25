@@ -7,7 +7,7 @@
 	// Új blogposzt beszúrása az adatbázisba
 	if ( isset($_SESSION['ok']) && $_SESSION['ok'] === 'true' ){
 		if (isset($_POST['poszt_cime'], $_POST['poszt_tartalma'], $_POST['poszt_cimkek'])){
-			$poszt_cimkek = explode(';',$_POST['poszt_cimkek']);
+			$poszt_cimkek = explode(',',$_POST['poszt_cimkek']);
 			print_r($poszt_cimkek);
 			$beszuro_lekerdezes = sprintf("
 				INSERT INTO posztok (cim, tartalom, szerzo_id, hsz_lehet)
