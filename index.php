@@ -8,18 +8,7 @@
 	<meta charset="utf-8">
 	<title>VPG Blog</title>
 	<link rel="stylesheet" type="text/css" href="./assets/style/style.css" />
-</head><body onload="JSL('assets/style/main.js');">
-    <script>
-        //gyorsított betöltődés
-        
-        function JSL(call) {
-        var element = document.createElement("script");
-        element.src = call;
-        document.body.appendChild(element);
-        }
-          
-          JSL("http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"); 
-    </script> 
+</head><body>
 	<div id="fejlecKontener">
 		<header>
 			<h1>VPG szakkör blog</h1>
