@@ -54,27 +54,25 @@
 	// Új komment beszúrása az adatbázisba
 	if ( isset($_SESSION['ok']) && $_SESSION['ok'] === 'true' ){
 		if (isset($_POST['comment'], $_GET['poszt_id'])){
-			$beszuro_lekerdezes = sprintf("
+			query("
 				INSERT INTO hozzaszolasok (tartalom, szerzo_id, poszt_id)
-				VALUES ('%s',%d,%d)",
+				VALUES (@1,#2,#3)",
 				$ab -> real_escape_string( strip_tags( $_POST['comment'], '<a><b><i>' ) ),
 				$_SESSION['f_id'],
 				$_GET['poszt_id']
-			) ;
-			$ab -> query($beszuro_lekerdezes) ;
+			);
 		}
 	}
     //Szerkesztett komment beszúrása az adatbázisba
     if (isset($_SESSION['ok']) && $_SESSION['ok'] === 'true' ){
         if (isset($_POST['comment'], $_GET['comment_id'])){
-            $beszuro_lekerdezes = sprintf("
+            query("
                 UPDATE hozzaszolasok (tartalom)
-                VALUES ('%s')
-                WHERE id=%d",
+                VALUES (@1)
+                WHERE id=#2",
                 $ab -> real_escape_string( strip_tags( $_POST['comment'], '<a><b><i>' ) ),
                 $_GET[comment_id]
-                        ) ;
-        $ab -> query($beszuro_lekerdezes) ;
+            );
     }
 }
 	
