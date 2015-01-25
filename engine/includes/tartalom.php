@@ -1,4 +1,6 @@
 <?
+	require_once(__DIR__.'/../require.php');
+	
 	if ( isset( $_GET['muvelet']) ){
 		if ( $_GET['muvelet'] == 'uj_poszt' ){
 			require('ujposzt.php');
@@ -6,27 +8,25 @@
 			$poszt = new Poszt( $_GET['poszt_id'], $ab ) ;
 		} elseif ( $_GET['muvelet'] == 'cimke' && isset( $_GET['cimke_id'] ) ) {
 			
-			$cimke_posztok_lekerdezes = sprintf('
+			$res=query('
 				SELECT p.id AS id
 				FROM posztok AS p
 				JOIN posztCimkek AS pc
 				ON p.id = pc.poszt_id
-				WHERE pc.cimke_id = %d',
+				WHERE pc.cimke_id = #1',
 				$_GET['cimke_id'] );
-			$cimke_posztok_eredmeny = $ab -> query( $cimke_posztok_lekerdezes );
-			while ( $aktualis_poszt = $cimke_posztok_eredmeny -> fetch_assoc()){
+			while ( $aktualis_poszt = $res -> fetch_assoc()){
 				$poszt = new Poszt( $aktualis_poszt['id'], $ab );
 			}
         } elseif ( $_GET['muvelet'] == 'szerkeszt' && isset( $_GET['cimke_id'] ) ) {
             
         }
 	} else { // Ha nincs megadott művelet, az összes cikket megjelenítjük
-		$poszt_id_lekerdezes = "
+		$res=query("
 			SELECT id
 			FROM posztok
-			ORDER BY datum DESC" ;
-		$poszt_id_eredmeny = $ab -> query($poszt_id_lekerdezes);
-		while ( $aktualis_poszt = $poszt_id_eredmeny -> fetch_assoc()){
+			ORDER BY datum DESC");
+		while ( $aktualis_poszt = $res -> fetch_assoc()){
 			$poszt = new Poszt( $aktualis_poszt['id'], $ab );
 		}
 	}
