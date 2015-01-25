@@ -1,16 +1,15 @@
 <?
 
 	if ( isset( $_POST['fnev'], $_POST['jelszo'] ) ){
-		$lekerdezes = sprintf("
+		$res=query("
 			SELECT id, felhasznaloi_nev, teljes_nev
 			FROM felhasznalok
-			WHERE felhasznaloi_nev = '%s'
-			AND jelszo = '%s'",
+			WHERE felhasznaloi_nev = @1
+			AND jelszo = @2",
 			$ab -> real_escape_string( $_POST['fnev'] ),
 			md5( $_POST['jelszo'] ) ) ;
-		$eredmeny = $ab -> query( $lekerdezes );
-		if ( $eredmeny -> num_rows == 1 ){ // Siker
-			$sor = $eredmeny -> fetch_assoc() ;
+		if ( $res -> num_rows == 1 ){ // Siker
+			$sor = $res -> fetch_assoc() ;
 			$_SESSION['ok'] = 'true' ;
 			$_SESSION['f_id'] = $sor['id'] ;
 			$_SESSION['f_nev'] = $sor['felhasznaloi_nev'] ;
