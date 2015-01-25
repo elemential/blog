@@ -37,7 +37,7 @@ class Komment {
 		}
 	}
 	
-	public function megjelenit(){
+    public function megjelenit(){
         
         
         $sablon = file_get_contents('engine/templates/comment_form_szerk.tpl');
@@ -54,34 +54,36 @@ class Komment {
         $sablon = str_replace( $mit, $mire, $sablon );
         echo $sablon ;
         
+        
+        
         if ( $this -> hozzaszolas_ok == 1 && isset($_SESSION['ok']) && $_SESSION['ok'] === 'true' ){
             $sablon = file_get_contents('engine/templates/comment_form.tpl');
             $mit = '%poszt_id%' ;
             $mire = $this -> id ;
             $sablon = str_replace( $mit, $mire, $sablon );
             echo $sablon ;
-        
-        
-		$sablon = file_get_contents('engine/templates/komment.tpl');
-		$mit = array(
-			'%szerzo%',
-			'%datum%',
-			'%tartalom%'
-			);
-		$mire = array(
-			( $this -> szerzo_teljes_nev == '')
-				? $this->szerzo_nev
-				: $this->szerzo_teljes_nev,
-			$this -> datum,
-			$this -> tartalom
-			);
-		$sablon = str_replace( $mit, $mire, $sablon );
-		return $sablon ;
-        
-        
-
-	}
-	
+            
+            
+            $sablon = file_get_contents('engine/templates/komment.tpl');
+            $mit = array(
+                         '%szerzo%',
+                         '%datum%',
+                         '%tartalom%'
+                         );
+            $mire = array(
+                          ( $this -> szerzo_teljes_nev == '')
+                          ? $this->szerzo_nev
+                          : $this->szerzo_teljes_nev,
+                          $this -> datum,
+                          $this -> tartalom
+                          );
+            $sablon = str_replace( $mit, $mire, $sablon );
+            return $sablon ;
+            
+            
+            
+        }
+    }
 	public function nemTalalhato(){
 		echo "HIBA: Hiányzó hozzászólás.<br>" ;
 	}
