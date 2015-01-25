@@ -369,11 +369,22 @@ img[src="profile_icon.png"] {
     top: -5px;
 }
 .cimke a{ 
-    -webkit-filter:
+   opacity: .7;
 padding: 5px;
 background: #22b64d;
 margin: 10px;
 display: inline-block;
 color: white;
 text-decoration: none;   
+transition: all .4s; 
+}
+.cimke:hover a {
+    opacity:1;
+}
+.cimke a:empty {
+ display:none;   
+}
+
+.hozzaszolasok {
+ margin-left:    
 }
