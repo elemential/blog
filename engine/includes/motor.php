@@ -12,19 +12,19 @@
 	// Új blogposzt beszúrása az adatbázisba
 	if ( isset($_SESSION['ok']) && $_SESSION['ok'] === 'true' ){
 		if (isset($_POST['poszt_cime'], $_POST['poszt_tartalma'], $_POST['poszt_cimkek'])){
-            $hany_mention=0;
-            foreach($betu as $_POST['poszt_tartalma']){
-                if($betu=="@"){
-                    $benne=true;
-                    $hany_mention++;
-                    akt_hossz=0;
-                }
-                if($benne){
-                    if($betu==" "){
-                        
-                    }
-                }
-            }
+              $str=$_POST['poszt_tartalma'];
+              $pattern="/@[^\s.,\?!:;]+/";
+              $matches=[];
+              preg_match_all($pattern,$str,$matches);
+              foreach($matches[0] as $mention){
+                 $lekerdezes=sprintf('SELECT id FROM felhasznalok WHERE felhasznaloi_nev = %s',$ab->real_escape_string(substr($mention,1)));
+                 $ab->query($lekerdezes);
+                 if($ab->num_rows>0){
+                 $_POST['poszt_tartalma']=str_replace($mention,'<a href="linkparkolo.hu/'.substr($mention,1).'">'.$mention.'</a>',$_POST['posz_tartalma']);
+                 }
+              }
+        
+            
 			$poszt_cimkek = explode(';',$_POST['poszt_cimkek']);
 			print_r($poszt_cimkek);
 			$beszuro_lekerdezes = sprintf("
