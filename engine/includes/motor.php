@@ -12,6 +12,19 @@
 	// Új blogposzt beszúrása az adatbázisba
 	if ( isset($_SESSION['ok']) && $_SESSION['ok'] === 'true' ){
 		if (isset($_POST['poszt_cime'], $_POST['poszt_tartalma'], $_POST['poszt_cimkek'])){
+            $hany_mention=0;
+            foreach($betu as $_POST['poszt_tartalma']){
+                if($betu=="@"){
+                    $benne=true;
+                    $hany_mention++;
+                    akt_hossz=0;
+                }
+                if($benne){
+                    if($betu==" "){
+                        
+                    }
+                }
+            }
 			$poszt_cimkek = explode(';',$_POST['poszt_cimkek']);
 			print_r($poszt_cimkek);
 			$beszuro_lekerdezes = sprintf("
