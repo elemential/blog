@@ -1,1 +1,1 @@
-<span class="cimke"><a href="index.php?muvelet=cimke&cimke_id=%id%">%nev%</a></span>&nbsp;
+<span class="cimke"><a href="index.php?muvelet=cimke&cimke_id=%id%">%nev%</a></span>

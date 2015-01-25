@@ -17,7 +17,9 @@
 			while ( $aktualis_poszt = $cimke_posztok_eredmeny -> fetch_assoc()){
 				$poszt = new Poszt( $aktualis_poszt['id'], $ab );
 			}
-		}
+        } elseif ( $_GET['muvelet'] == 'szerkeszt' && isset( $_GET['cimke_id'] ) ) {
+            
+        }
 	} else { // Ha nincs megadott művelet, az összes cikket megjelenítjük
 		$poszt_id_lekerdezes = "
 			SELECT id
