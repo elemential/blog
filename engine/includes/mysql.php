@@ -1,7 +1,9 @@
 <?php
 //echo "NEW FILE";
 include_once 'motor.php';
-$con=&$ab;
+$con = new mysqli('localhost','root','E==m*c^13','bejelentkezes');
+$con -> set_charset('utf8');
+$ab=&$con;
 
 $sqlid=null;
 //$nothig=GENERATE_ERROR;

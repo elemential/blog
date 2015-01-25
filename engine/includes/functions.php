@@ -1,4 +1,5 @@
 <?php
+include_once('local.php');
 include_once('mysql.php');
 require('engine/classes/poszt.class.php');
 require('engine/classes/komment.class.php');
