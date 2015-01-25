@@ -1,6 +1,6 @@
 <?php
 //echo "NEW FILE";
-include_once 'motor.php';
+require_once(__DIR__.'/../require.php');
 $con = new mysqli(__MYSQL_HOST,__MYSQL_USER,__MYSQL_PW,__MYSQL_DATABASE);
 $con -> set_charset('utf8');
 $ab=&$con;
@@ -8,6 +8,7 @@ $ab=&$con;
 $sqlid=null;
 //$nothig=GENERATE_ERROR;
 function calcQues($ques, $inputs){
+	
 	$arrtostr=function($input){
 					$return=[];
 					foreach ($input as $key=>$value){
@@ -15,6 +16,7 @@ function calcQues($ques, $inputs){
 					}
 					return implode(', ', $return);
 				};
+	/*
 	foreach ($inputs as $key=>$input){
 		$inserts=[];
 		if (is_numeric($input)){
@@ -73,6 +75,7 @@ function calcQues($ques, $inputs){
 			}
 		}
 	}
+	*/
 	return $ques;
 }
 function query(){
@@ -90,7 +93,7 @@ function query(){
 	}
 	*/
 	$ques=calcQues($ques, $inputs);
-	log_ques($ques);
+	//log_ques($ques);
 	$lsqlid=sqlid(true, false);
 	$result=$con->query($ques);
 	$sqlid=sqlid(true, false);

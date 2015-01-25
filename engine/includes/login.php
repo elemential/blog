@@ -1,5 +1,5 @@
 <?
-
+	require_once(__DIR__.'/../require.php');
 	if ( isset( $_POST['fnev'], $_POST['jelszo'] ) ){
 		$res=query("
 			SELECT id, felhasznaloi_nev, teljes_nev

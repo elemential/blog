@@ -1,7 +1,7 @@
 <?
 	session_start() ;
 	
-	require_once('functions.php');
+	require_once(__DIR__.'/../require.php');
 	require('login.php');
 	
 	// Új blogposzt beszúrása az adatbázisba
@@ -64,5 +64,18 @@
 			$ab -> query($beszuro_lekerdezes) ;
 		}
 	}
+    //Szerkesztett komment beszúrása az adatbázisba
+    if (isset($_SESSION['ok']) && $_SESSION['ok'] === 'true' ){
+        if (isset($_POST['comment'], $_GET['comment_id'])){
+            $beszuro_lekerdezes = sprintf("
+                UPDATE hozzaszolasok (tartalom)
+                VALUES ('%s')
+                WHERE id=%d",
+                $ab -> real_escape_string( strip_tags( $_POST['comment'], '<a><b><i>' ) ),
+                $_GET[comment_id]
+                        ) ;
+        $ab -> query($beszuro_lekerdezes) ;
+    }
+}
 	
 ?>
