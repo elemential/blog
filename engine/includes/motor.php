@@ -85,13 +85,8 @@
     //Szerkesztett komment beszúrása az adatbázisba
     if (isset($_SESSION['ok']) && $_SESSION['ok'] === 'true' ){
         if (isset($_POST['comment'], $_GET['comment_id'])){
-            query("
-                UPDATE hozzaszolasok (tartalom)
-                VALUES (@1)
-                WHERE id=#2",
-                $ab -> real_escape_string( strip_tags( $_POST['comment'], '<a><b><i>' ) ),
-                $_GET[comment_id]
-            );
+			$komment=new komment($_GET['comment_id']);
+			$komment->update($_REQUEST['comment']);
     }
 }
 	

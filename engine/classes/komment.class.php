@@ -42,53 +42,34 @@ class Komment {
 	
     public function megjelenit(){
         
-        
-        $sablon = file_get_contents('engine/templates/comment_form_szerk.tpl');
+		$sablon = file_get_contents('engine/templates/komment'.(($_SESSION['f_id']===$this->szerzo_id)?'_szerk':'').'.tpl');
+		
         $mit = array(
-                     '%comment_id%',
+                     '%szerzo%',
+					 '%datum%',
                      '%tartalom%',
                      );
         $mire = array(
                       $this -> id,
+					  $this -> datum,
                       $this -> tartalom,
                       );
         $sablon = str_replace( $mit, $mire, $sablon );
-        echo $sablon ;
-        
-        
-        
-        if ( $this -> hozzaszolas_ok == 1 && isset($_SESSION['ok']) && $_SESSION['ok'] === 'true' ){
-            $sablon = file_get_contents('engine/templates/comment_form.tpl');
-            $mit = '%poszt_id%' ;
-            $mire = $this -> id ;
-            $sablon = str_replace( $mit, $mire, $sablon );
-            echo $sablon ;
-            
-            
-            $sablon = file_get_contents('engine/templates/komment.tpl');
-            $mit = array(
-                         '%szerzo%',
-                         '%datum%',
-                         '%tartalom%'
-                         );
-            $mire = array(
-                          ( $this -> szerzo_teljes_nev == '')
-                          ? $this->szerzo_nev
-                          : $this->szerzo_teljes_nev,
-                          $this -> datum,
-                          $this -> tartalom
-                          );
-            $sablon = str_replace( $mit, $mire, $sablon );
-            return $sablon ;
-            
-            
-            
-        }
+        echo $sablon;
     }
 	public function nemTalalhato(){
 		echo "HIBA: Hiányzó hozzászólás.<br>" ;
 	}
 	
+	public function update($tartalom){
+		query("
+			UPDATE hozzaszolasok (tartalom)
+			VALUES (@1)
+			WHERE id=#2",
+			$ab -> real_escape_string( strip_tags( $tartalom, '<a><b><i>' ) ),
+			$this -> id
+		);
+	}
 }
 
 ?>
