@@ -1,6 +1,6 @@
 <?
 	session_start() ;
-	$ab = new mysqli('localhost','root','E==m*c^13','bejelentkezes');
+	$ab = new mysqli('localhost','root','','bejelentkezes');
 	$ab -> set_charset('utf8');
 	
 	require('login.php');
@@ -17,16 +17,16 @@
               $matches=[];
               preg_match_all($pattern,$str,$matches);
               foreach($matches[0] as $mention){
-                 $lekerdezes=sprintf('SELECT id FROM felhasznalok WHERE felhasznaloi_nev = %s',$ab->real_escape_string(substr($mention,1)));
-                 $ab->query($lekerdezes);
-                 if($ab->num_rows>0){
-                 $_POST['poszt_tartalma']=str_replace($mention,'<a href="linkparkolo.hu/'.substr($mention,1).'">'.$mention.'</a>',$_POST['posz_tartalma']);
+                 $lekerdezes=sprintf("SELECT id FROM felhasznalok WHERE felhasznaloi_nev = '%s'",$ab->real_escape_string(substr($mention,1)));
+                 $eredmeny = $ab->query($lekerdezes);
+                 if($eredmeny->num_rows>0){
+                 $_POST['poszt_tartalma']=str_replace($mention,'<a href="linkparkolo.hu/'.substr($mention,1).'">'.$mention.'</a>',$_POST['poszt_tartalma']);
                  }
               }
         
             
 			$poszt_cimkek = explode(';',$_POST['poszt_cimkek']);
-			print_r($poszt_cimkek);
+			
 			$beszuro_lekerdezes = sprintf("
 				INSERT INTO posztok (cim, tartalom, szerzo_id, hsz_lehet)
 				VALUES ('%s','%s',%d,%d)",
