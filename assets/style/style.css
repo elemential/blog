@@ -4,22 +4,7 @@
     margin: 0;
     padding: 0;
 }
-<<<<<<< HEAD
 
-html, body {
-}
-
-#fejlecKontener {
-	border-bottom: 1px solid #d2d2d2 ;
-	background: rgb(30,87,153); /* Old browsers */
-	background: -moz-linear-gradient(top,  rgba(30,87,153,1) 0%, rgba(125,185,232,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,87,153,1)), color-stop(100%,rgba(125,185,232,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgba(30,87,153,1) 0%,rgba(125,185,232,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgba(30,87,153,1) 0%,rgba(125,185,232,1) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgba(30,87,153,1) 0%,rgba(125,185,232,1) 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  rgba(30,87,153,1) 0%,rgba(125,185,232,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
-=======
 html,
 body {
     background: white !important;
@@ -28,7 +13,6 @@ body {
 }
 article {
     background: white;
->>>>>>> c36cff95522272f3cfaf32b04dc1d16e2cdb8512
 }
 body article:first-child {
     margin-top: 80px;
@@ -71,23 +55,7 @@ body article:first-child {
     z-index: 11;
 }
 #lablecKontener {
-<<<<<<< HEAD
-	background: rgb(30,87,153); /* Old browsers */
-	background: -moz-linear-gradient(top,  rgba(30,87,153,1) 0%, rgba(125,185,232,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,87,153,1)), color-stop(100%,rgba(125,185,232,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top,  rgba(30,87,153,1) 0%,rgba(125,185,232,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top,  rgba(30,87,153,1) 0%,rgba(125,185,232,1) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top,  rgba(30,87,153,1) 0%,rgba(125,185,232,1) 100%); /* IE10+ */
-	background: linear-gradient(to bottom,  rgba(30,87,153,1) 0%,rgba(125,185,232,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
-	border-top: 1px solid #d2d2d2 ;
-	position: fixed ;
-	bottom: 0 ;
-	right: 0	;
-	left: 0 ;
-}
 
-=======
     background: #2a2a2a;
     /* Old browsers */
     z-index: -1;
@@ -99,7 +67,6 @@ body article:first-child {
     left: 0;
     height: 100px;
 }
->>>>>>> c36cff95522272f3cfaf32b04dc1d16e2cdb8512
 #lablecKontener > footer {
     width: 800px;
     margin: 0 auto;

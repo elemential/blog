@@ -8,12 +8,7 @@
 	<meta charset="utf-8">
 	<title>VPG Blog</title>
 	<link rel="stylesheet" type="text/css" href="./assets/style/style.css" />
-<<<<<<< HEAD
-</head><body>
-	<div id="fejlecKontener">
-		<header>
-			<h1>VPG szakkör blog</h1>
-=======
+
     <link rel="stylesheet" type="text/css" href="./assets/style/main.js" />
     <script>
            fome = { primaryColor : '#666',
@@ -41,7 +36,6 @@
 		<header>
 			<h1 onclick="location.href='index.php'">VPG szakkör blog</h1>         
             <img src="assets/images/up.png" width="40px" class="off">
->>>>>>> c36cff95522272f3cfaf32b04dc1d16e2cdb8512
 		</header>
 	</div>
 	<div id="tartalomKontener">
@@ -60,11 +54,8 @@
             <img src="assets/images/up.png" class="buttup">
 		</footer>
 	</div>
-<<<<<<< HEAD
-=======
     
    <link rel="import" href="http://elemential.net/polyfome/include_minimalist.html">
      <link rel="import" href="http://elemential.net/polyfome/elementile.html">
           
->>>>>>> c36cff95522272f3cfaf32b04dc1d16e2cdb8512
 </body></html>
