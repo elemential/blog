@@ -80,11 +80,13 @@ function query(){
 	$ques=$inputs[0];
 	unset($inputs[0]);
 	//log_info(print_r($inputs, true), 'info', 'mysql', debug_backtrace());
+	/*
 	if (isset($GLOBALS['class'])){
 		$class=$GLOBALS['class'];
 		$inputs['current']=get_class($class);
 		//$inputs['class']=(string)$class;
 	}
+	*/
 	$ques=calcQues($ques, $inputs);
 	log_ques($ques);
 	$lsqlid=sqlid(true, false);
@@ -164,46 +166,12 @@ function log_info($info, $sect='info', $file='info', $debug=null){
 	}
 	*/
 	if (isset($_GET['dev'])){
-		echo "<div class=log>\n"
-			echo "<b>$file</b>[$sect] $info<br>\n"
+		echo "<div class=log>\n";
+			echo "<b>$file</b>[$sect] $info<br>\n";
 			echo "<pre>\n";
 				var_dump($debug);echo "\n";
-			echo "</pre>\n"
-		echo "</div>\n"
+			echo "</pre>\n";
+		echo "</div>\n";
 	}
-}
-
-function toarray($keys=[], $that=null, $details=false){
-	if ($that && !$details) $details=$that->details; 
-	$thats=function($key)use($that, $details){
-		if ($that!=null){
-			return $that->$key;
-		}
-		else{
-			if($key=='details') {
-				return $details;
-			}else{
-				return $details[$key];
-			}
-		}
-	};
-	$result=[];
-	if ($keys===true){
-		return $details;
-	}
-	
-	foreach ($keys as $key=>$value){
-		if (!$value){
-			//DoNothing();
-		}elseif (is_array($details[$key])){
-			$result[key]=toarray($value, null, $details[$key]);
-		}elseif(is_object($details[$key])){
-			$result[$key]=$details[$key];
-		}else{
-			if ($value) $result[$key]=$thats($key);
-		}
-	}
-	
-	return $result;
 }
 ?>

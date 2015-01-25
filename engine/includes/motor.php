@@ -3,13 +3,8 @@
 	$ab = new mysqli('localhost','root','E==m*c^13','bejelentkezes');
 	$ab -> set_charset('utf8');
 	
-	require_once('mysql.php');
-	
+	require_once('functions.php');
 	require('login.php');
-	
-	require('engine/classes/poszt.class.php');
-	require('engine/classes/komment.class.php');
-	require('engine/classes/cimke.class.php');
 	
 	// Új blogposzt beszúrása az adatbázisba
 	if ( isset($_SESSION['ok']) && $_SESSION['ok'] === 'true' ){
