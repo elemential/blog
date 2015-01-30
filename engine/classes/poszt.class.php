@@ -84,25 +84,34 @@ class Poszt {
 			$cimkek_html_kimenet .= $aktualis_cimke -> megjelenit() ;
 		}
 		
-		$kommentek_html_kimenet = '' ;
-		if ( $this -> hozzaszolas_ok == 1 ){
             
-            ?> <img src="assets/images/comment.png" class="commentimg">
+		$kommentek_html_kimenet = '' ;
+        
+         if ( $this -> hozzaszolas_ok == 1 ){
+            
+           
+             ?> <img src="assets/images/comment.png" class="commentimg">
                 <h2>Hozzászólások</h2> 
             <?
-            
-			foreach ( $this -> hozzaszolasok AS $hsz ){
-				$kommentek_html_kimenet .= $hsz -> megjelenit() ;
-			}
+			
 		}
         else {
-         ?> 
+         
+             ?> 
                 <span class="off">
                 <img src="assets/images/commentoff.png" class="commentimg">
-                <h2>Hozzászólások letiltva</h2> 
+                <h2>Hozzászólások letiltvaa</h2> 
                 </span>
-            <?   
+            <?
         }
+        
+		if ($this -> hozzaszolas_ok == 1) {
+         foreach ( $this -> hozzaszolasok AS $hsz ){
+				$kommentek_html_kimenet .= $hsz -> megjelenit() ;
+			}   
+        }
+        
+        
 		
 		$sablon = file_get_contents('engine/templates/poszt.tpl');
 		$mit = array(
@@ -126,9 +135,14 @@ class Poszt {
 			$kommentek_html_kimenet
 			);
 		$sablon = str_replace( $mit, $mire, $sablon );
+        
 		echo $sablon ;
-
+        
+       
+        
+        
 		if ( $this -> hozzaszolas_ok == 1 && isset($_SESSION['ok']) && $_SESSION['ok'] === 'true' ){
+          
 			$sablon = file_get_contents('engine/templates/comment_form.tpl');
 			$mit = '%poszt_id%' ;
 			$mire = $this -> id ;

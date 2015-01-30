@@ -1,3 +1,4 @@
+
 <?
 	
 class Komment {
@@ -11,6 +12,7 @@ class Komment {
 	private $szerzo_teljes_nev ;
 	
 	public function __construct($id, $ab){
+        
 		$this -> ab = $ab ;
 		$komment_lekerdezes = sprintf("
 			SELECT
@@ -37,9 +39,11 @@ class Komment {
 			$this -> szerzo_nev = $aktualis_komment['f_nev'];
 			$this -> szerzo_teljes_nev = $aktualis_komment['f_teljes_nev'];
 		}
+       
 	}
 	
 	public function megjelenit(){
+        
 		$sablon = file_get_contents('engine/templates/komment.tpl');
 		$mit = array(
 			'%szerzo%',

@@ -12,6 +12,7 @@ class Cimke {
 	}
 	
 	public function megjelenit(){
+        
 		$sablon = file_get_contents('engine/templates/cimke.tpl');
 		$mit = array(
 			'%id%',
@@ -22,8 +23,11 @@ class Cimke {
 			$this -> nev
 			);
 		$sablon = str_replace( $mit, $mire, $sablon );
+        
 		return $sablon ;
+       
 	}
+    
 
 }
 
