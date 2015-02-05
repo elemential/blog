@@ -102,11 +102,15 @@ class Poszt {
 			'%hozzaszolasok%'
 			);
         
-        if($_SESSION['f_nev']==$this->szerzo_nev){
-            $szerkesztes='<i onclick="szerkeszt()">Szerkesztés</i>';
-        }else{
+        /*var_dump($_SESSION);*/
+        
         $szerkesztes="";
-        }
+        
+        if(isset($_SESSION['fnev'])){if($_SESSION['f_nev']==$this->szerzo_nev){
+            $szerkesztes='<i onclick="szerkeszt()">Szerkesztés</i>';
+        }}
+        
+        
         
         
 		$mire = array(
