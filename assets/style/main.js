@@ -104,6 +104,10 @@
     
     
 
-    
-
+$('.buttup').click(function(){
+     $('body').animate({scrollTop:0}, '0');
+})
+$('img[src="assets/images/up.png"]').click(function(){
+     $('body').animate({scrollTop:0}, '0');
+})
 		

@@ -1,5 +1,7 @@
+<br>
 <form method="post">
 	<h1>Új bejegyzés létrehozása</h1>
+    <br>
 	<table>
 		<tr>
 			<td>Cím:</td>
