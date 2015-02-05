@@ -54,6 +54,7 @@ class Poszt {
 				ORDER BY datum DESC",
 				$this -> id );
 			$kommentek_eredmeny = $ab -> query($kommentek_lekerdezes);
+          
 			while ( $komment = $kommentek_eredmeny -> fetch_assoc()){
 				$this->hozzaszolasok[] = new Komment( $komment['id'], $this-> ab );
 
@@ -81,13 +82,14 @@ class Poszt {
 		
 		$cimkek_html_kimenet = '' ;
 		foreach ( $this -> cimkek as $aktualis_cimke ){
+            
 			$cimkek_html_kimenet .= $aktualis_cimke -> megjelenit() ;
 		}
 		
             
 		$kommentek_html_kimenet = '' ;
         
-         if ( $this -> hozzaszolas_ok == 1 ){
+         /*if ( $this -> hozzaszolas_ok == 1 ){
             
            
              ?> <img src="assets/images/comment.png" class="commentimg">
@@ -103,11 +105,12 @@ class Poszt {
                 <h2>Hozzászólások letiltvaa</h2> 
                 </span>
             <?
-        }
+        }*/
         
 		if ($this -> hozzaszolas_ok == 1) {
          foreach ( $this -> hozzaszolasok AS $hsz ){
 				$kommentek_html_kimenet .= $hsz -> megjelenit() ;
+             
 			}   
         }
         
